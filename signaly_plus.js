@@ -10,8 +10,6 @@ const addCommentLinks = () =>
             let commentTime = new Date(element.querySelector('time').getAttribute('datetime'));
             let urlTime = encodeURI(commentTime.toISOString().replace('T', ' '));
 
-            let href = '?startTime=' + urlTime;
-
             let top = element
                 .parentElement
                 .parentElement
@@ -20,13 +18,13 @@ const addCommentLinks = () =>
                 .parentElement
                 .parentElement
                 .parentElement;
-            console.log(top);
+
+            let href = '?startTime=' + urlTime;
             if (top.classList.value === 'post story') {
                 // timeline post
                 let detailLink = top.querySelector('.story-content > a.details-date');
-                console.log(detailLink);
                 let postId = detailLink.href.split('/').slice(-1)[0];
-                console.log(postId);
+
                 href = detailLink.href + href + '#snippet-post-comments-p' + postId + '-comments';
             } else {
                 // blog post

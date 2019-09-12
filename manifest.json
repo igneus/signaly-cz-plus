@@ -1,0 +1,18 @@
+{
+
+  "manifest_version": 2,
+  "name": "signaly.cz +",
+  "version": "1.0",
+
+  "description": "Extends signaly.cz with additional functionality",
+
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.signaly.cz/*"
+      ],
+      "js": ["signaly_plus.js"]
+    }
+  ]
+
+}

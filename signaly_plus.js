@@ -1,9 +1,10 @@
 'use strict';
 
+/** comments: change timestamps to comment links */
 const addCommentLinks = () =>
     document
         .querySelectorAll('.section-comments .item > .story-content > .story-footer > .details-date')
-        .forEach(function (element) {
+        .forEach((element) => {
             let link = document.createElement('a');
             link.style.border = '1px dotted blue';
 
@@ -37,7 +38,21 @@ const addCommentLinks = () =>
             link.appendChild(element);
         });
 
-addCommentLinks();
+/** "Výběr z blogů": if the author's profile image is used as post preview image, hide it */
+const digestMaskProfilePhotos = () =>
+    document
+        .querySelectorAll('body > .site > .section-content > .row > .col:nth-child(2) > .panel-container:nth-child(1) > h3:nth-child(3) + .box-row > .box')
+        .forEach((element) => {
+            let img = element.querySelector('img');
+            if (img.src.includes('https://img.signaly.cz/profile-photos/')) {
+                img.style.display = 'none';
+                img.parentElement.parentElement.style.backgroundColor = 'grey';
+            }
+        });
 
+
+addCommentLinks();
 // TODO this is really dirty - it would be much better to somehow listen for the new comments being added to the page
 setInterval(addCommentLinks, 4000);
+
+digestMaskProfilePhotos();
